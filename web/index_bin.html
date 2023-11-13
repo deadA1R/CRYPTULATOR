@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head lang="ru">
+		<meta charset="UTF-8">
+		<title>Cryptulator</title>
+		<link rel="icon" href="img/1.ico" type="image/png">
+		<link rel="stylesheet" href="style/style.css" type="text/css">
+		<script src="eel.js"></script>
+		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    	<script src="js/script.js"></script>
+	</head>
+	<body>
+		<div align="center">
+			<div>
+				<h1>Number system</h1>
+			</div>
+			<!-- ------------------------------- -->
+			<div>
+				<a href="index_have_key.html"  class="menu_btn">SUBSTITUTION</a>
+				<a href="index_no_key.html" class="menu_btn">HASHING</a>
+			</div><br>
+			<!-- ------------------------------- -->
+			<div>
+				<select type="text" id="cypher_t" class="set_1" >
+					<option disabled>--Type cipher--</option>
+    				<option value="1">BIN</option>
+					<option value="4">XX ASCII</option>
+				</select>
+				<select type="text" id="code" class="set_1"  >
+					 <option disabled>--What to do--</option>
+    				<option value="1">Encrypt</option>
+    				<option value="2">Decrypt</option>
+				</select>
+			</div>
+			<br>
+			<!-- ------------------------------- -->
+			<div>
+				<div class="lab_1">
+						<label >YOUR TEXT</label><br>
+				</div>
+				<textarea type="text" id="text_1"  placeholder="Enter the text..." cols="32" rows="6"></textarea>
+			</div>
+			<!-- ------------------------------- -->
+			<div>
+				<button id="send_cnv" class="btn">Сonvert</button>
+			</div>
+			<!-- ------------------------------- -->
+			<br>
+			<div class="out_text">
+				<textarea readonly id="result" class="out_2" cols="32" rows="6" placeholder="Your result..."></textarea>
+			</div>
+			<!-- ------------------------------- -->
+			<div style="margin-top: 5px;">
+				<button onclick="copy_function()" class="btn_copy">Copy</button>
+			</div>
+		</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+      async function convert() {
+      	let type = document.getElementById('code').value;
+      	let cypher_type = document.getElementById('cypher_t').value;
+		let text_c = document.getElementById('text_1').value;
+		let res = await eel.cypher_bin(text_c, cypher_type, type)();
+		document.getElementById('result').innerHTML = res;
+      	document.getElementById('text_1').value = '';
+      }
+
+      $('#send_cnv').click(async function()
+      {
+       convert();
+      });
+
+    </script>
+	</body>
+</html>

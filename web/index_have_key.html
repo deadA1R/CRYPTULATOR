@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head lang="ru">
+		<meta charset="UTF-8">
+		<title>Cryptulator</title>
+		<link rel="icon" href="img/1.ico" type="image/png">
+		<link rel="stylesheet" href="style/Style.css" type="text/css">
+		<script src="eel.js"></script>
+    	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    	<script src="js/script.js"></script>
+	</head>
+	<body>
+		<div class="content" align="center">
+			<div>
+				<h1>Substitution</h1>
+			</div>
+			<!-- ------------------------------- -->
+			<div class="menu">
+				<a href="index_no_key.html" class="menu_btn">HASHING</a>
+				<a href="index_bin.html" class="menu_btn">NUMBER SYSTEMS</a>
+			</div>
+			<br>
+			<!-- ------------------------------- -->
+			<div class="type_cypher">
+				<select type="text" id="cypher_t" class="set_1"  >
+					<option disabled>--Type cipher--</option>
+					<option value="1">Caesar</option>
+    				<option value="2">Vigenere</option>
+
+				</select>
+				<select type="text" id="code"  class="set_1" >
+					<option disabled>--What to do--</option>
+    				<option value="1" class="opt_1">Encrypt</option>
+    				<option value="2" class="opt_1">Decrypt</option>
+			</select>
+			</div>
+			<br>
+			<!-- ------------------------------- -->
+			<div class="input_text">
+				<div class="lab_1">
+						<label >STEP</label><br>
+				</div>
+				<div class="int_1">
+					<input type="text" id="shift_1" placeholder="Enter the key..." ></input>
+				</div><br>
+				<div>
+					<div class="lab_1">
+						<label >YOUR TEXT</label><br>
+					</div>
+					<textarea type="text" id="text_1" placeholder="Enter the text..." cols="32" rows="4"></textarea>
+				</div>
+			</div>
+			<!-- ------------------------------- -->
+			<div class="middle">
+				<button id="send_cnv" class="btn">Сonvert</button>
+			</div>
+			<br>
+			<!-- ------------------------------- -->
+			<div class="out_text">
+				<textarea readonly id="result" class="out" cols="32" rows="4" placeholder="Your result..."></textarea>
+			</div>
+			<div style="margin-top: 5px;">
+				<button onclick="copy_function()" class="btn_copy">Copy</button>
+			</div>
+		</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+      async function convert() {
+      	let cypher_type = document.getElementById('cypher_t').value;
+      	let code = document.getElementById('code').value;
+      	let shift = document.getElementById('shift_1').value;
+		let text_c = document.getElementById('text_1').value;
+		let res = await eel.cypher_hk(text_c, shift, code, cypher_type)();
+		document.getElementById('result').innerHTML = res;
+      	document.getElementById('text_1').value = '';
+      	document.getElementById('shift_1').value = '';
+      }
+
+      $('#send_cnv').click(async function()
+      {
+       convert();
+      });
+
+    </script>
+	</body>
+</html>
